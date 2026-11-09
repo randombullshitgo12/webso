@@ -29,7 +29,78 @@
       <li><a href="a/virt-univ-ai.html">Virtual Universe in AI</a></li>
       <li><a href="a/art-in-weaponry.html">Art in Weaponry</a></li>
     </ul>
+
+    <!-- TODAY PANEL: edit the lines below. Drag the top bar to move it (desktop); double-click it to snap back. -->
+    <section class="panel" id="today-panel" aria-label="Today">
+      <div class="panel-bar" id="today-panel-bar">
+        <span class="panel-title">Today</span>
+      </div>
+      <ul class="panel-list">
+        <li>Watching a Chinese tech tube video, pretty long.</li>
+        <li>Making website for my friends activity we are gonna do together</li>
+        <li>Studying An Introduction to Thermal Physics chapter 8 by Daniel Schroeder</li>
+      </ul>
+    </section>
   </main>
+
+  <script>
+    (function () {
+      var panel = document.getElementById("today-panel");
+      var bar = document.getElementById("today-panel-bar");
+      if (!panel || !bar) return;
+
+      function isMobile() {
+        return window.matchMedia("(max-width: 650px)").matches;
+      }
+
+      function reset() {
+        panel.classList.remove("is-floating", "is-dragging");
+        panel.style.left = "";
+        panel.style.top = "";
+        panel.style.width = "";
+        panel.style.margin = "";
+      }
+
+      var dragging = false;
+      var offsetX = 0, offsetY = 0;
+
+      bar.addEventListener("pointerdown", function (e) {
+        if (isMobile()) return;
+        var rect = panel.getBoundingClientRect();
+        if (!panel.classList.contains("is-floating")) {
+          panel.classList.add("is-floating");
+          panel.style.left = rect.left + "px";
+          panel.style.top = rect.top + "px";
+          panel.style.width = rect.width + "px";
+          panel.style.margin = "0";
+        }
+        offsetX = e.clientX - panel.getBoundingClientRect().left;
+        offsetY = e.clientY - panel.getBoundingClientRect().top;
+        dragging = true;
+        panel.classList.add("is-dragging");
+        try { bar.setPointerCapture(e.pointerId); } catch (err) {}
+        e.preventDefault();
+      });
+
+      bar.addEventListener("pointermove", function (e) {
+        if (!dragging) return;
+        var x = Math.min(Math.max(e.clientX - offsetX, 0), window.innerWidth - 140);
+        var y = Math.min(Math.max(e.clientY - offsetY, 0), window.innerHeight - 52);
+        panel.style.left = x + "px";
+        panel.style.top = y + "px";
+      });
+
+      function endDrag() {
+        dragging = false;
+        panel.classList.remove("is-dragging");
+      }
+      bar.addEventListener("pointerup", endDrag);
+      bar.addEventListener("pointercancel", endDrag);
+      bar.addEventListener("dblclick", function () {
+        if (!isMobile()) reset();
+      });
+    })();
+  </script>
 
 </body>
 </html>

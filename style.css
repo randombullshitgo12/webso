@@ -28,6 +28,10 @@
   color: var(--navy-deep);
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
   background-color: var(--asphalt);
   background-image:
@@ -327,6 +331,127 @@ blockquote p {
   transform: skewX(-18deg) scaleX(1);
 }
 
+/* TODAY PANEL — one-line daily items.
+   Desktop: floats over the frame's lower right, overlapping it
+   and sticking out past the right and bottom edges.
+   The top bar drags it; double-click snaps it back.
+   Phone: stationary below the essay list. */
+.panel {
+  margin: 24px;
+  background-color: var(--white);
+  border: 1px solid var(--navy-deep);
+  border-top: 5px solid var(--gold);
+  box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.45);
+}
+
+@media (min-width: 651px) {
+  body {
+    overflow-x: clip;
+  }
+
+  .panel {
+    position: absolute;
+    bottom: -72px;
+    right: -64px;
+    width: 380px;
+    margin: 0;
+    z-index: 20;
+  }
+}
+
+.panel-bar {
+  display: flex;
+  align-items: center;
+  padding: 11px 14px;
+  background-color: var(--navy-deep);
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+@media (min-width: 651px) {
+  .panel-bar {
+    cursor: grab;
+    touch-action: none;
+  }
+}
+
+.panel.is-dragging .panel-bar {
+  cursor: grabbing;
+}
+
+.panel-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-condensed);
+  font-size: 15px;
+  font-weight: 800;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--white);
+}
+
+.panel-title::before {
+  content: "";
+  flex: none;
+  width: 9px;
+  height: 20px;
+  background: linear-gradient(180deg, var(--gold-hi), var(--gold));
+  transform: skewX(-18deg);
+}
+
+/* Rows styled like the essay list: one line each. */
+.panel-list {
+  list-style: none;
+}
+
+.panel-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  font-family: var(--font-condensed);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.35;
+  color: var(--navy-deep);
+  border-bottom: 1px solid #e1e7f0;
+}
+
+.panel-list li:last-child {
+  border-bottom: none;
+}
+
+.panel-list li::before {
+  content: "";
+  flex: none;
+  width: 10px;
+  height: 10px;
+  background-color: var(--gold);
+  border: 1px solid var(--navy-deep);
+}
+
+
+.panel-list li:hover::before {
+  background-color: var(--gold);
+}
+
+/* Dragging state (set by JS, cleared by double-click / on mobile).
+   bottom/right must be cleared: the desktop rule anchors the panel
+   with bottom:-72px, and with a fixed top also set it would
+   stretch the panel tall instead of hugging its content. */
+.panel.is-floating {
+  position: fixed;
+  bottom: auto;
+  right: auto;
+  z-index: 50;
+  box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.45);
+}
+
 /* MOBILE RESPONSIVE */
 @media (max-width: 650px) {
   body {
@@ -383,5 +508,19 @@ blockquote p {
 
   .content {
     padding: 24px 16px 28px;
+  }
+
+  /* Today panel stays stationary below the essay list on phone */
+  .panel,
+  .panel.is-floating {
+    position: static !important;
+    width: auto;
+    margin: 16px;
+    box-shadow: 6px 6px 0 rgba(8, 18, 51, 0.18);
+  }
+
+  .panel-bar {
+    cursor: default;
+    touch-action: auto;
   }
 }
