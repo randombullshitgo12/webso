@@ -1,0 +1,387 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+:root {
+  --asphalt: #0b0e13;
+  --navy: #12265a;
+  --navy-mid: #1b3470;
+  --navy-deep: #081233;
+  --gold: #f2c200;
+  --gold-hi: #ffde3a;
+  --steel: #d7dee8;
+  --steel-mid: #9aa8c0;
+  --paper: #f6f7f9;
+  --white: #ffffff;
+  --ink: #101a30;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-condensed: "Arial Narrow", "Helvetica Neue Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+::selection {
+  background-color: var(--gold);
+  color: var(--navy-deep);
+}
+
+body {
+  background-color: var(--asphalt);
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.018) 0 1px, transparent 1px 4px),
+    linear-gradient(180deg, rgba(255,255,255,0.03), transparent 40%);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 56px 20px 72px;
+}
+
+/* MAIN FRAME — steel plate on asphalt */
+.frame {
+  position: relative;
+  max-width: 840px;
+  margin: 0 auto;
+  background-color: var(--paper);
+  border: 1px solid #000;
+  border-top: 7px solid var(--gold);
+  box-shadow: 14px 14px 0 rgba(0, 0, 0, 0.55);
+  outline: 1px solid rgba(242, 194, 0, 0.35);
+  outline-offset: 6px;
+}
+
+/* HEADER & TOP BAR — deep navy plate */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  background-color: var(--navy-deep);
+  border-bottom: 3px solid var(--gold);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 24px;
+  flex: 1;
+}
+
+.brand::before {
+  content: "";
+  flex: none;
+  width: 12px;
+  height: 30px;
+  background: linear-gradient(180deg, var(--gold-hi), var(--gold));
+  transform: skewX(-18deg);
+  box-shadow: 4px 0 0 rgba(255, 255, 255, 0.22);
+}
+
+.brand a,
+.brand span {
+  font-family: var(--font-condensed);
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-style: italic;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.brand a:hover {
+  color: var(--gold-hi);
+  text-decoration: none;
+}
+
+/* NAVIGATION — segmented steel blocks */
+nav {
+  display: flex;
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 108px;
+  padding: 22px 20px;
+  color: var(--steel);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  border-right: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+nav a:last-child {
+  border-right: none;
+}
+
+nav a:hover {
+  background-color: var(--gold);
+  color: var(--navy-deep);
+}
+
+/* UNIFIED STRUCTURAL BARS */
+.list a,
+article h1,
+article h2 {
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+/* HOMEPAGE LIST */
+.list {
+  list-style: none;
+}
+
+.list a {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 24px;
+  font-family: var(--font-condensed);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--navy-deep);
+  text-decoration: none;
+  background-color: var(--paper);
+  border-bottom: 1px solid #c9d1de;
+  border-left: 10px solid transparent;
+}
+
+.list li:last-child a {
+  border-bottom: none;
+}
+
+.list a:hover {
+  background-color: var(--navy-deep);
+  color: var(--white);
+  border-left-color: var(--gold);
+}
+
+/* ARTICLE HEADINGS */
+article h1 {
+  position: relative;
+  padding: 30px 24px 26px;
+  font-family: var(--font-condensed);
+  font-size: 34px;
+  font-weight: 800;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  color: var(--white);
+  background:
+    repeating-linear-gradient(115deg, rgba(242,194,0,0.0) 0 26px, rgba(242,194,0,0.14) 26px 38px),
+    linear-gradient(90deg, var(--navy-deep), var(--navy-mid));
+  border-left: 10px solid var(--gold);
+  border-bottom: 1px solid var(--navy-deep);
+}
+
+article h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 5px;
+  background: repeating-linear-gradient(115deg, var(--gold) 0 14px, var(--navy-deep) 14px 22px);
+}
+
+article h2 {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 17px 24px;
+  font-family: var(--font-condensed);
+  font-size: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  line-height: 1.4;
+  color: var(--navy-deep);
+  background-color: #e6eaf2;
+  border-left: 10px solid var(--gold);
+  border-top: 1px solid #c9d1de;
+  border-bottom: 1px solid #c9d1de;
+}
+
+/* ARTICLE BODY / PROSE */
+.content {
+  padding: 30px 24px 34px;
+}
+
+.deck {
+  padding: 28px 24px 0;
+  font-size: 19px;
+  line-height: 1.6;
+  font-weight: 600;
+  color: var(--navy-mid);
+  border-bottom: 1px solid #c9d1de;
+}
+
+.content p {
+  font-size: 16.5px;
+  line-height: 1.8;
+  color: var(--ink);
+}
+
+.content blockquote {
+  display: block;
+  margin: 4px 0;
+  padding: 20px 22px;
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: var(--white);
+  background: linear-gradient(90deg, var(--navy-deep), var(--navy-mid));
+  border-left: 8px solid var(--gold);
+}
+
+.content blockquote p {
+  color: var(--white);
+}
+
+blockquote {
+  display: block;
+  margin: 4px 0;
+  padding: 20px 22px;
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: var(--white);
+  background: linear-gradient(90deg, var(--navy-deep), var(--navy-mid));
+  border-left: 8px solid var(--gold);
+}
+
+blockquote p {
+  color: var(--white);
+}
+
+.content p + p {
+  margin-top: 20px;
+}
+
+.content blockquote + p {
+  margin-top: 20px;
+}
+
+/* IN-ARTICLE LINKS
+   Hover: a tilted gold cover grows from the left edge of the
+   text to the right, skewed like a forward slash.
+   Before hover it is scaled to nothing, and the link clips it
+   so it never paints over neighbouring words. */
+.content a {
+  position: relative;
+  display: inline-block;
+  vertical-align: bottom;
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--navy-deep);
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 3px;
+  padding: 0 4px;
+  font-weight: 600;
+}
+
+.content a::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: -12px;
+  width: calc(100% + 24px);
+  background-color: var(--gold);
+  transform: skewX(-18deg) scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.16s ease-out !important;
+}
+
+.content a:hover {
+  color: var(--navy-deep);
+  text-decoration: none;
+}
+
+.content a:hover::before {
+  transform: skewX(-18deg) scaleX(1);
+}
+
+/* Focus support — same cover for keyboard users */
+.content a:focus-visible {
+  outline: 2px solid var(--navy-deep);
+  outline-offset: 2px;
+  color: var(--navy-deep);
+  text-decoration: none;
+}
+
+.content a:focus-visible::before {
+  transform: skewX(-18deg) scaleX(1);
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 650px) {
+  body {
+    padding: 0;
+  }
+
+  .frame {
+    border-left: none;
+    border-right: none;
+    box-shadow: none;
+    outline: none;
+  }
+
+  header {
+    flex-direction: column;
+  }
+
+  .brand {
+    padding: 18px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  nav {
+    border-left: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  nav a {
+    min-width: 0;
+    padding: 15px 0;
+    text-align: center;
+  }
+
+  .list a {
+    padding: 18px 16px;
+    font-size: 17px;
+  }
+
+  article h1 {
+    font-size: 27px;
+    padding: 24px 16px 22px;
+  }
+
+  article h2 {
+    padding: 15px 16px;
+    font-size: 15px;
+  }
+
+  .deck {
+    padding: 22px 16px 0;
+    font-size: 17px;
+  }
+
+  .content {
+    padding: 24px 16px 28px;
+  }
+}
