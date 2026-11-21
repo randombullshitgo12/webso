@@ -1,0 +1,226 @@
+/* ============================================================
+   Centaur Bold, everywhere. White paper, black ink, slashes.
+   ============================================================ */
+
+@font-face {
+  font-family: "Centaur Bold";
+  src: url("fonts/centaur-bold.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --ink: #000;
+  --paper: #fff;
+  --font: "Centaur Bold", "Centaur", Georgia, serif;
+  --cjk: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "SimSun", serif;
+  --measure: 700px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  background: var(--paper);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font), var(--cjk);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.5;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+::selection {
+  background: #000;
+  color: #fff;
+}
+
+/* ---------- Links ----------
+   No indicator at rest. On hover they simply underline. */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+  text-decoration-thickness: 1px;
+  outline: none;
+}
+
+/* ---------- Home ---------- */
+
+.page-home main {
+  padding: 40px 40px 140px;
+}
+
+.block {
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+
+.entry-list {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+}
+
+.entry-list a {
+  display: inline-block;
+  line-height: 1.3;
+}
+
+.block-links {
+  margin-top: 56px;
+}
+
+/* ---------- Article ---------- */
+
+.page-article main {
+  padding: 40px 40px 140px;
+}
+
+.doc-head,
+.doc {
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+
+.doc-head h1 {
+  letter-spacing: 0.02em;
+}
+
+.doc {
+  padding-top: 58px;
+}
+
+.doc p {
+  margin: 0 0 1.25em;
+  font-family: var(--font), var(--cjk);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.62;
+  letter-spacing: 0.002em;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+.doc i,
+.doc em {
+  font-style: italic;
+  font-weight: 700;
+}
+
+/* Section markers: /// Culture? */
+.section-rule {
+  margin: 2em 0;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* Pulled opening quote: big mark in the gutter, rotated label. */
+.lede-quote {
+  position: relative;
+  margin: 0 0 1.35em;
+  padding-left: 34px;
+}
+
+.quote-mark {
+  position: absolute;
+  left: 0;
+  top: -2px;
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 54px;
+  line-height: 0.62;
+  letter-spacing: -0.04em;
+}
+
+.lede-quote p {
+  margin: 0;
+}
+
+.margin-note {
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%) rotate(180deg);
+  writing-mode: vertical-rl;
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  white-space: nowrap;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 680px) {
+  .page-home main,
+  .page-article main {
+    padding: 36px 22px 100px;
+  }
+
+  .block-links {
+    margin-top: 72px;
+  }
+
+  .doc {
+    padding-top: 44px;
+  }
+
+  .doc p {
+    text-align: left;
+  }
+
+  .lede-quote {
+    padding-left: 30px;
+  }
+
+  .quote-mark {
+    font-size: 44px;
+  }
+
+  .margin-note {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a {
+    transition: none;
+  }
+}
+
+@media print {
+  a {
+    background: none !important;
+  }
+}
